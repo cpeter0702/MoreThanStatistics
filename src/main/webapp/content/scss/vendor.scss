@@ -12,3 +12,5 @@ eg $input-color: red;
 @import 'bootswatch/dist/flatly/bootswatch';
 
 /* jhipster-needle-scss-add-vendor JHipster will add new css style */
+@import '~ag-grid-community/styles/ag-grid.css';
+@import '~ag-grid-community/styles/ag-theme-alpine.css';

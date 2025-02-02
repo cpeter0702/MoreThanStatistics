@@ -11,6 +11,8 @@ import { SORT, ITEM_DELETED_EVENT, DEFAULT_SORT_DATA } from 'app/config/navigati
 import { IMtsIncome } from '../mts-income.model';
 import { EntityArrayResponseType, MtsIncomeService } from '../service/mts-income.service';
 import { MtsIncomeDeleteDialogComponent } from '../delete/mts-income-delete-dialog.component';
+import { AgCharts } from 'ag-charts-angular';
+import { AgChartOptions } from 'ag-charts-community';
 
 @Component({
   standalone: true,
@@ -32,6 +34,26 @@ export class MtsIncomeComponent implements OnInit {
   mtsIncomes?: IMtsIncome[];
   isLoading = false;
 
+  // ===== table =====================================================================================
+  columnDefs = [
+    { headerName: 'Id', field: 'id', filter: true, sortable: true, checkboxSelection: true },
+    { headerName: 'Make', field: 'make', filter: true, sortable: true, checkboxSelection: true },
+    { headerName: 'Model', field: 'model', filter: true, sortable: true, checkboxSelection: true },
+    { headerName: 'Price', field: 'price', filter: true, sortable: true, checkboxSelection: true },
+    {
+      headerName: 'Operation',
+      field: 'action',
+      cellRenderer: (params: any) => {
+        return `<button class="custom-btn" onclick="alert('ID: ${params.data.id}')">查看</button>`;
+      },
+    },
+  ];
+  rowData = [
+    { id: 1, make: 'Toyota', model: 'Camry', price: 35000 },
+    { id: 2, make: 'Ford', model: 'Focus', price: 29000 },
+    { id: 3, make: 'Porsche', model: 'Boxster', price: 72000 },
+  ];
+  // ===== table =====================================================================================
   sortState = sortStateSignal({});
 
   public router = inject(Router);
